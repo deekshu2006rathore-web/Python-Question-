@@ -5,13 +5,15 @@ Author - Deeksha Rathore
 <br>
 Enrollment number=Y24170527
 <br>
-Mid II assignment=Bank Management system 
+Mid II assignment:-
 <br>
-End Semester assignment 
+Bank Management system 
+<br>
+End Semester assignment:-
 <br>
 This repository consists 31 question such as basic questions,loops,string ,list and dictionary ,method on string,list, dictionary and tuples, function,file handling questions, Database,Exception handling,numpy,pandas and Matplotlib
 <br>
-🗂️ List of questions are:
+📒List of questions are:-
 <br>
 Q1. Write a program to demonstrate different numeric data types (int, float) and type conversion.
 <br>
