@@ -13,12 +13,11 @@ Bank Management system
 
 End Semester assignment:-
 <br>
-This repository consists 31 question such as basic questions,loops,string ,list and dictionary ,method on string,list, dictionary and tuples, function,file handling questions, Database, 
-Exception handling,numpy,pandas and Matplotlib
+This repository consists 31 question such as basic questions,loops,string ,list and dictionary ,method on string,list, dictionary and tuples, function,file handling, Exception Handling,Database, numpy,pandas and Matplotlib.
 <br>
 
 
-📒List of questions are:-<bold>
+📒<bold>List of questions are:-</bold>
 <br>
 
 Q1. Write a program to demonstrate different numeric data types (int, float) and type conversion.
