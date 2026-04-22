@@ -1,0 +1,58 @@
+import sqlite3
+
+def demonstrate_transaction(with_error=False):
+    conn = sqlite3.connect("test.db")
+    cursor = conn.cursor()
+    
+    # Create table if not exists
+    cursor.execute('''
+        CREATE TABLE IF NOT EXISTS accounts (
+            id INTEGER PRIMARY KEY,
+            name TEXT,
+            balance REAL
+        )
+    ''')
+    
+    # Clear any previous data for clean demo
+    cursor.execute("DELETE FROM accounts")
+    
+    # Insert initial data
+    cursor.execute("INSERT INTO accounts (name, balance) VALUES (?, ?)", ("Alice", 1000))
+    cursor.execute("INSERT INTO accounts (name, balance) VALUES (?, ?)", ("Bob", 500))
+    conn.commit()
+    print("Initial balances inserted.")
+    
+    try:
+        # Start transaction (SQLite auto-starts, but we'll group operations)
+        print("\n--- Starting transaction ---")
+        
+        # Operation 1: Deduct 200 from Alice
+        cursor.execute("UPDATE accounts SET balance = balance - 200 WHERE name = 'Alice'")
+        
+        # Operation 2: Add 200 to Bob
+        cursor.execute("UPDATE accounts SET balance = balance + 200 WHERE name = 'Bob'")
+        
+        # Simulate an error if requested
+        if with_error:
+            raise Exception("Simulated database error after partial update")
+        
+        # If no error, commit the transaction
+        conn.commit()
+        print("Transaction committed successfully.")
+        
+    except Exception as e:
+        # Rollback all changes since last commit
+        conn.rollback()
+        print(f"Transaction failed: {e}")
+        print("Rolled back all changes.")
+    
+    # Show final balances
+    cursor.execute("SELECT name, balance FROM accounts")
+    print("\nFinal balances:")
+    for row in cursor.fetchall():
+        print(f"{row[0]}: {row[1]}")
+    
+    conn.close()
+
+# Run without error (commit)
+print("=== Case 1: No error, commit happens ===")
